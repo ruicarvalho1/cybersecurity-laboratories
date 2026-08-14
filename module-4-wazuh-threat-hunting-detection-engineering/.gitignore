@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# IDE
+.idea/
+**/.idea/
+
+# Nested Git repositories
+**/.git/
+
+# Private keys
+*.key
+**/*-key.pem
+**/*_key.pem
+
+# Wazuh / OpenSearch private certificates
+wazuh-lab/config/wazuh_indexer_ssl_certs/root-ca.key
+wazuh-lab/config/wazuh_indexer_ssl_certs/admin-key.pem
+wazuh-lab/config/wazuh_indexer_ssl_certs/wazuh.dashboard-key.pem
+wazuh-lab/config/wazuh_indexer_ssl_certs/wazuh.indexer-key.pem
+wazuh-lab/config/wazuh_indexer_ssl_certs/wazuh.manager-key.pem
+
+# Logs
+*.log

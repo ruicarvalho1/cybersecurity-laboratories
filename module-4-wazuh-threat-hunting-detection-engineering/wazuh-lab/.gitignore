@@ -1,0 +1,6 @@
+# Generated SSL certs — never commit private keys
+config/wazuh_indexer_ssl_certs/*.key
+config/wazuh_indexer_ssl_certs/*.pem
+
+# Zip archives
+*.zip

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CorpNet — Reports</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f5f7; color: #333; }
+    header { background: #0052cc; color: white; padding: 12px 24px; }
+    header h1 { margin: 0; font-size: 1.15rem; }
+    nav { background: #fff; border-bottom: 1px solid #ddd; padding: 0 24px; }
+    nav a { display: inline-block; padding: 11px 14px; text-decoration: none; color: #0052cc; font-size: .88rem; }
+    .container { max-width: 960px; margin: 28px auto; padding: 0 24px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 18px 20px; margin-bottom: 16px; }
+    h2 { margin-top: 0; font-size: .8rem; color: #666; text-transform: uppercase; letter-spacing: .06em; }
+    ul.list { list-style: none; padding: 0; margin: 0; font-size: .88rem; }
+    ul.list li { padding: 9px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+    ul.list li:last-child { border-bottom: none; }
+    ul.list a { color: #0052cc; text-decoration: none; }
+    ul.list a:hover { text-decoration: underline; }
+    .meta { color: #888; font-size: .8rem; }
+    .btn { display: inline-block; background: #0052cc; color: white; padding: 7px 14px; border-radius: 3px; text-decoration: none; font-size: .85rem; }
+    .btn:hover { background: #0065ff; }
+    footer { text-align: center; font-size: .73rem; color: #aaa; padding: 22px; }
+  </style>
+</head>
+<body>
+<header><h1>CorpNet Internal Portal</h1></header>
+<nav>
+  <a href="/">Home</a>
+  <a href="/employees">Employees</a>
+  <a href="/reports">Reports</a>
+  <a href="/admin/">Admin</a>
+</nav>
+<div class="container">
+  <br>
+  <div class="card">
+    <h2>Submit a report</h2>
+    <p style="font-size:.88rem; margin: 0 0 12px; color:#555">Submit an incident report, security finding, or compliance issue using the online form. Sign in with your CorpNet credentials.</p>
+    <a class="btn" href="/reports/submit/">Open submission form &rarr;</a>
+  </div>
+  <div class="card">
+    <h2>Financial reports</h2>
+    <ul class="list">
+      <li><a href="/reports/q4-2023.html">Q4 2023 Financial Report</a><span class="meta">2024-01-15 &middot; Confidential</span></li>
+      <li><a href="/reports/q3-2023.html">Q3 2023 Financial Report</a><span class="meta">2023-10-12 &middot; Confidential</span></li>
+      <li><a href="/reports/annual-2022.html">Annual Report 2022</a><span class="meta">2023-03-01 &middot; Internal</span></li>
+    </ul>
+  </div>
+  <br>
+  <div class="card">
+    <h2>Security reports</h2>
+    <ul class="list">
+      <li><a href="/reports/pentest-2023.html">Penetration Test Report — Nov 2023</a><span class="meta">2023-12-01 &middot; Restricted</span></li>
+      <li><a href="/reports/soc-q4-2023.html">SOC Summary Q4 2023</a><span class="meta">2024-01-20 &middot; Internal</span></li>
+    </ul>
+  </div>
+</div>
+<footer>CorpNet v2.1 &middot; Internal use only</footer>
+</body>
+</html>

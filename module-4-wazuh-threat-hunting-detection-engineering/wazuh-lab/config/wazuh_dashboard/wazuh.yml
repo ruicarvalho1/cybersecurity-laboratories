@@ -1,0 +1,10 @@
+# Wazuh dashboard plugin — API connection config.
+# The numeric key is the ID the plugin expects on first boot; using it here
+# prevents the plugin from appending a second duplicate hosts block.
+hosts:
+  - 1513629884013:
+      url: https://wazuh.manager
+      port: 55000
+      username: wazuh-wui
+      password: MyS3cr37P450r.*-
+      run_as: false

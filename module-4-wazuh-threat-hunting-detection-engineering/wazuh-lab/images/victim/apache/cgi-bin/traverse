@@ -1,0 +1,28 @@
+#!/bin/bash
+echo "Content-Type: text/plain"
+echo ""
+TARGET=$(printf '%s' "$QUERY_STRING" | python3 -c "
+import sys, urllib.parse, os.path
+d = dict(urllib.parse.parse_qsl(sys.stdin.read()))
+orig = d.get('orig', '')
+# Strip the alias prefix to get the relative path
+if orig.startswith('/icons/'):
+    rel = orig[7:]
+elif orig.startswith('/cgi-bin/'):
+    rel = '../../' + orig[9:]
+else:
+    rel = orig.lstrip('/')
+# Resolve traversal: normalize from root
+target = os.path.normpath('/' + rel)
+print(target)
+" 2>/dev/null)
+case "$TARGET" in
+    /etc/passwd)
+        cat /etc/passwd ;;
+    /etc/shadow)
+        echo "(shadow not accessible in lab environment)" ;;
+    /var/www/html/index.html)
+        cat /var/www/html/index.html ;;
+    *)
+        echo "traversal resolved to: $TARGET" ;;
+esac

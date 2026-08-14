@@ -1,0 +1,9 @@
+<decoder name="corpnet-login">
+  <program_name>corpnet-login</program_name>
+</decoder>
+
+<decoder name="corpnet-login-fields">
+  <parent>corpnet-login</parent>
+  <regex>user=(\S+)</regex>
+  <order>dstuser</order>
+</decoder>

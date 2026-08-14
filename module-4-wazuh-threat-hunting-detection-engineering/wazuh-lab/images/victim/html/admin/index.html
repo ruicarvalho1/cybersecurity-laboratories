@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CorpNet — Admin Panel</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f5f7; color: #333; }
+    header { background: #b71c1c; color: white; padding: 12px 24px; display: flex; align-items: center; gap: 10px; }
+    header h1 { margin: 0; font-size: 1.15rem; }
+    nav { background: #fff; border-bottom: 1px solid #ddd; padding: 0 24px; }
+    nav a { display: inline-block; padding: 11px 14px; text-decoration: none; color: #0052cc; font-size: .88rem; }
+    .container { max-width: 960px; margin: 28px auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 18px 20px; }
+    .card.wide { grid-column: 1 / -1; }
+    h2 { margin-top: 0; font-size: .8rem; color: #666; text-transform: uppercase; letter-spacing: .06em; }
+    table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+    th { text-align: left; padding: 7px 9px; background: #f4f5f7; border-bottom: 2px solid #ddd; }
+    td { padding: 7px 9px; border-bottom: 1px solid #eee; font-family: monospace; }
+    td:first-child { font-family: Arial, sans-serif; }
+    tr:last-child td { border-bottom: none; }
+    .tag { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: .75rem; font-weight: 600; }
+    .tag-admin { background: #ffebee; color: #b71c1c; }
+    .tag-user  { background: #e8f5e9; color: #2e7d32; }
+    .notice { background: #ffebee; border: 1px solid #ef9a9a; border-radius: 3px; padding: 9px 13px; font-size: .83rem; margin-bottom: 18px; grid-column: 1 / -1; }
+    code { background: #f4f5f7; padding: 1px 5px; border-radius: 3px; font-size: .85em; }
+    footer { text-align: center; font-size: .73rem; color: #aaa; padding: 22px; }
+  </style>
+</head>
+<body>
+<header>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  <h1>CorpNet Admin Panel</h1>
+</header>
+<nav>
+  <a href="/">Home</a>
+  <a href="/employees">Employees</a>
+  <a href="/reports">Reports</a>
+  <a href="/admin/">Admin</a>
+</nav>
+<div class="container">
+  <div class="notice wide">
+    &#x26A0; This panel is for IT administrators only. Access is logged.
+    <!-- TODO: add authentication before next audit — ticket CORP-1142 -->
+  </div>
+
+  <div class="card wide">
+    <h2>User accounts</h2>
+    <table>
+      <thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Password hash (MD5)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>alice</td><td>alice@corpnet.local</td><td><span class="tag tag-user">user</span></td><td>482c811da5d5b4bc6d497ffa98491e38</td></tr>
+        <tr><td>2</td><td>bob</td><td>bob@corpnet.local</td><td><span class="tag tag-user">user</span></td><td>827ccb0eea8a706c4c34a16891f84e7b</td></tr>
+        <tr><td>3</td><td>charlie</td><td>charlie@corpnet.local</td><td><span class="tag tag-user">user</span></td><td>e99a18c428cb38d5f260853678922e03</td></tr>
+        <tr><td>4</td><td>diana</td><td>diana@corpnet.local</td><td><span class="tag tag-user">user</span></td><td>5f4dcc3b5aa765d61d8327deb882cf99</td></tr>
+        <tr><td>5</td><td>admin</td><td>admin@corpnet.local</td><td><span class="tag tag-admin">admin</span></td><td>21232f297a57a5a743894a0e4a801fc3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Database config</h2>
+    <table>
+      <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Host</td><td>db.corpnet.local</td></tr>
+        <tr><td>Port</td><td>3306</td></tr>
+        <tr><td>User</td><td>corpnet_app</td></tr>
+        <tr><td>Password</td><td>Str0ngDBPass!</td></tr>
+        <tr><td>Database</td><td>corpnet_prod</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>API keys</h2>
+    <table>
+      <thead><tr><th>Service</th><th>Key</th></tr></thead>
+      <tbody>
+        <tr><td>Stripe</td><td>sk_live_4xT7...redacted</td></tr>
+        <tr><td>SendGrid</td><td>SG.kNj9...redacted</td></tr>
+        <tr><td>Internal API</td><td>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<footer>CorpNet v2.1 &middot; Internal use only</footer>
+</body>
+</html>

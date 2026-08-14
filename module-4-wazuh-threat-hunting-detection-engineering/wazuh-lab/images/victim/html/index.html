@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CorpNet — Internal Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f5f7; color: #333; }
+    header { background: #0052cc; color: white; padding: 12px 24px; display: flex; align-items: center; gap: 12px; }
+    header svg { flex-shrink: 0; }
+    header h1 { margin: 0; font-size: 1.15rem; font-weight: 600; }
+    nav { background: #fff; border-bottom: 1px solid #ddd; padding: 0 24px; }
+    nav a { display: inline-block; padding: 11px 14px; text-decoration: none; color: #0052cc; font-size: .88rem; }
+    nav a:hover { background: #f4f5f7; }
+    .container { max-width: 960px; margin: 28px auto; padding: 0 24px; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 18px 20px; }
+    .card h2 { margin: 0 0 14px; font-size: .8rem; color: #666; text-transform: uppercase; letter-spacing: .06em; }
+    label { display: block; font-size: .83rem; color: #555; margin-bottom: 3px; }
+    input[type=text], input[type=password] { width: 100%; padding: 7px 9px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 3px; margin-bottom: 11px; font-size: .88rem; }
+    button { background: #0052cc; color: white; border: none; padding: 7px 16px; border-radius: 3px; cursor: pointer; font-size: .88rem; }
+    button:hover { background: #0065ff; }
+    .notice { background: #fffae6; border: 1px solid #ffe58f; border-radius: 3px; padding: 9px 13px; font-size: .83rem; margin-bottom: 16px; }
+    ul.list { list-style: none; padding: 0; margin: 0; font-size: .88rem; }
+    ul.list li { padding: 7px 0; border-bottom: 1px solid #eee; }
+    ul.list li:last-child { border-bottom: none; }
+    ul.list a { color: #0052cc; text-decoration: none; }
+    ul.list a:hover { text-decoration: underline; }
+    footer { text-align: center; font-size: .73rem; color: #aaa; padding: 22px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+  </svg>
+  <h1>CorpNet Internal Portal</h1>
+</header>
+
+<nav>
+  <a href="/">Home</a>
+  <a href="/employees">Employees</a>
+  <a href="/reports">Reports</a>
+  <a href="/admin/">Admin</a>
+</nav>
+
+<div class="container">
+  <div>
+    <div class="notice">
+      &#x26A0; Scheduled maintenance: HR database offline Sunday 02:00–04:00 UTC.
+    </div>
+
+    <div class="card">
+      <h2>Employee lookup</h2>
+      <form action="/cgi-bin/greet" method="get">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="e.g. Alice">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+    <br>
+
+    <div class="card">
+      <h2>Recent announcements</h2>
+      <ul class="list">
+        <li>2024-03-01 &mdash; Q1 performance reviews open in the HR portal.</li>
+        <li>2024-02-14 &mdash; New VPN client rollout starts Monday. See IT wiki.</li>
+        <li>2024-01-22 &mdash; Patch Tuesday: please reboot workstations by Friday.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div>
+    <div class="card">
+      <h2>Sign in</h2>
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="jsmith" autocomplete="username">
+      <label for="password">Password</label>
+      <input type="password" id="password" autocomplete="current-password">
+      <button type="button" onclick="doPortalLogin()" style="width:100%">Sign in</button>
+      <div id="login-msg" style="margin-top:8px;font-size:.83rem"></div>
+    </div>
+
+    <br>
+
+    <div class="card">
+      <h2>Quick links</h2>
+      <ul class="list">
+        <li><a href="/cgi-bin/status">System status</a></li>
+        <li><a href="/reports/q4-2023.html">Q4 2023 report</a></li>
+        <li><a href="/cgi-bin/export?format=csv&auth=skip">Export employee list</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>CorpNet v2.1 &middot; Internal use only &middot; IT helpdesk ext.&nbsp;4200</footer>
+
+<script>
+function doPortalLogin() {
+  var u = document.getElementById('username').value;
+  var p = document.getElementById('password').value;
+  fetch('/login', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({username: u, password: p})
+  }).then(function(r){ return r.json(); }).then(function(d){
+    if (d.token) {
+      localStorage.setItem('corp_token', d.token);
+      localStorage.setItem('corp_user', u);
+      window.location.href = '/reports/submit/';
+    } else {
+      document.getElementById('login-msg').innerHTML =
+        '<span style="color:#c62828">Invalid credentials.</span>';
+    }
+  }).catch(function(){
+    document.getElementById('login-msg').innerHTML =
+      '<span style="color:#c62828">Login failed.</span>';
+  });
+}
+</script>
+
+</body>
+</html>
