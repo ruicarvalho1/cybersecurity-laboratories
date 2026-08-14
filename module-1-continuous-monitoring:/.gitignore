@@ -1,0 +1,36 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# macOS
+.DS_Store
+._*
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables / secrets
+.env
+.env.*
+
+# PRIVATE KEYS - NEVER COMMIT
+Project/CA_Server/storage/ca_private_key.pem
+Project/TSA_Server/storage/tsa_private_key.pem
+**/*private_key.pem
+**/*private-key.pem
+
+# Runtime logs
+*.log
+Project/Monitoring_CA_Server/logs/
+Project/TSA_Server/storage/tsa_tokens.log
+
+# Generated blockchain artifacts
+Project/Blockchain/build/
+
+# Temporary files
+*.tmp
+*.swp
+*~
